@@ -1,0 +1,6 @@
+lib/
+obj/
+bin/
+
+*.o
+*.so
