@@ -144,6 +144,42 @@ float * mat_transpose(float * mat, int rows, int cols){
     return t_mat;
 }
 
+void mat_sum(float * mat1, float * mat2){
+    int i;
+    for(i = 0; i < sizeof(mat1); i++){
+        mat1[i] = mat1[i] + mat2[i];
+    }
+}
+
+void mat_prod(float * mat1, float s){
+    int i; 
+    for (i = 0; i < sizeof(mat1); i++){
+        mat1[i] *= s;
+    }
+}
+
+float * mat_mul(float * mat1, float * mat2, int rows1, int cols1, int cols2){
+    int i,j,k;
+    int rows2 = sizeof(mat2) / cols2;
+    if((sizeof(mat1) == sizeof(float)*2) || (sizeof(mat2) == sizeof(float)*2)) {printf(" Error scalar multiplication."); exit;}
+    // cols1 and rows2 must be the same to perform multiplication 
+    //sizeof(mat2) rows2 x cols2; 
+    if (cols1 != rows2) {printf("Incorrect dimensions."); exit;}
+        // unable to perform multiplication
+    float temp;
+    float * mat3 = mat_create(rows1,cols2);
+    for(i = 0; i < rows1; i++ ) {
+       for (j = 0; j < cols2; j ++ ) {
+           temp = 0;
+            for ( k = 0; k < cols1; k++) {
+                temp += mat1[i+k*rows1]*mat2[k + j*cols1];
+                mat3[i+j*rows1] = temp;
+             } 
+        }   
+    }
+    return mat3;
+}
+
 int mat_invert (float * mat, int dim){
 
     float * inv = mat_create_identity(dim);
