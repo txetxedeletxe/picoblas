@@ -144,27 +144,22 @@ float * mat_transpose(float * mat, int rows, int cols){
     return t_mat;
 }
 
-void mat_sum(float * mat1, float * mat2){
+void mat_sum(float * mat1, float * mat2, int rows, int cols){
     int i;
-    for(i = 0; i < sizeof(mat1); i++){
+    for(i = 0; i < rows*cols; i++){
         mat1[i] = mat1[i] + mat2[i];
     }
 }
 
-void mat_prod(float * mat1, float s){
+void mat_prod(float * mat1, float s, int rows, int cols){
     int i; 
-    for (i = 0; i < sizeof(mat1); i++){
+    for (i = 0; i < rows*cols; i++){
         mat1[i] *= s;
     }
 }
 
 float * mat_mul(float * mat1, float * mat2, int rows1, int cols1, int cols2){
     int i,j,k;
-    int rows2 = sizeof(mat2) / cols2;
-    if((sizeof(mat1) == sizeof(float)*2) || (sizeof(mat2) == sizeof(float)*2)) {printf(" Error scalar multiplication."); exit;}
-    // cols1 and rows2 must be the same to perform multiplication 
-    //sizeof(mat2) rows2 x cols2; 
-    if (cols1 != rows2) {printf("Incorrect dimensions."); exit;}
         // unable to perform multiplication
     float temp;
     float * mat3 = mat_create(rows1,cols2);

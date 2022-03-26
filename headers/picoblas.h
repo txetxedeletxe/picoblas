@@ -24,8 +24,8 @@ void mat_scale_col (float * mat, int rows, int cols, int target_col, float coef)
 
 // Common operations
 float * mat_transpose(float * mat, int rows, int cols);
-void mat_sum(float * mat1, float * mat2);
-void mat_prod(float * mat1, float s);
+void mat_sum(float * mat1, float * mat2, int rows, int cols);
+void mat_prod(float * mat1, float s, int rows, int cols);
 float * mat_mul(float * mat1, float * mat2, int rows1, int cols1, int cols2);
 int mat_invert (float * mat, int dim); 
 
