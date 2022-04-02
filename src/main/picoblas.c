@@ -236,6 +236,52 @@ int mat_invert (float * mat, int dim){
 
     return 0; // No error
 }
+// Determinant
+float mat_det(float * mat, int dim){
+    int i,j,k;
+    float ratio;
+    float det = 1.0; 
+    // Triangularization by Gauss Elimination
+    for(i = 0; i < dim; i++){
+        if(mat[i+dim*i] == 0.0){
+            return -1.0;
+        }
+        for(j = i + 1; j < dim; j++){
+            ratio = mat[j + i*dim]/mat[i + i*dim];
+            for(k = 0; k < dim; k++){
+                mat[j+k*dim] = mat[j+k*dim] - ratio*mat[i+k*dim];
+            }
+        }
+    }
+
+    for(i = 0; i < dim; i++){
+        det = det * mat[i + i*dim];
+    }
+    return det;
+}
+// Trace
+float mat_trace(float * mat, int dim){
+    int i;
+    float trace = 0;
+    for(i = 0; i < dim; i++){
+        trace += mat[i+i*dim];
+    }
+    return trace;
+}
+
+// Maximum entry of the matrix
+float mat_max(float * mat, int  rows, int cols){
+    int i,j;
+    float max = 0.0;
+    for(i = 0; i < rows; i++){
+        for(j = 0; j < cols; j++){
+           if(mat[i+j*rows] > max){
+               max = mat[i+j*rows];
+           }
+        }
+    }
+    return max;
+}
 
 // Visualization
 void mat_print(float * mat, int rows, int cols){

@@ -28,6 +28,9 @@ void mat_sum(float * mat1, float * mat2, int rows, int cols);
 void mat_prod(float * mat1, float s, int rows, int cols);
 float * mat_mul(float * mat1, float * mat2, int rows1, int cols1, int cols2);
 int mat_invert (float * mat, int dim); 
+float mat_det(float * mat, int dim);
+float mat_trace(float * mat, int dim);
+float mat_max(float * mat, int  rows, int cols);
 
 // Visualization
 void mat_print(float * mat, int rows, int cols);
